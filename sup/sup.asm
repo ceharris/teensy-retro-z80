@@ -351,17 +351,17 @@ reg_peek:
 user_mem:
 		defs ustack_size
 user_prog:
-		# write the hello string
-		ld hl,hello		# point to string
-		ld a,@puts		# invoke the puts function
+		; write the hello string
+		ld hl,hello		; point to string
+		ld a,@puts		l invoke the puts function
 		rst 0x28
 
-		# add trailing newline
-		ld c,newline		# character to put
-		ld a,@putcA		# invoke the putc function
+		; add trailing newline
+		ld c,newline		; character to put
+		ld a,@putcA		; invoke the putc function
 		rst 0x28
 
-		# exit the program
+		; exit the program
 		ld a,@exit		
 		rst 0x28
 
