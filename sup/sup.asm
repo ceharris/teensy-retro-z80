@@ -5,7 +5,6 @@ con_io		equ 0x80
 con_status	equ 0x81
 ustack_size	equ 64
 
-newline		equ 0xa	
 
 		org 0x0
 	;--------------------------------------------------------------
@@ -352,46 +351,21 @@ reg_peek:
 user_mem:
 		defs ustack_size
 user_prog:
-		ld hl,hello
-		ld a,@puts
+		# write the hello string
+		ld hl,hello		# point to string
+		ld a,@puts		# invoke the puts function
 		rst 0x28
 
-		ld c,newline
-		ld a,@putc
+		# add trailing newline
+		ld c,newline		# character to put
+		ld a,@putcA		# invoke the putc function
 		rst 0x28
 
-		ld bc,0x0100
-		ld de,0x0302
-
-		ld hl,0x0706
-		push hl
-		pop af
-		ld hl,0x0504
-
-		ex af,af'
-		exx
-
-		ld bc,0x8180
-		ld de,0x8382
-
-		ld hl,0x8786
-		push hl
-		pop af
-		ld hl,0x8584
-
-		exx
-		ex af,af'
-
-		ld ix,0xaaaa
-		ld iy,0xbbbb
-
-		rst 0x30
-
-		ld a,@exit
+		# exit the program
+		ld a,@exit		
 		rst 0x28
 
 hello   	defb "Hello, world.", 0
-
-my_handler:	ret
+newline		equ 0xa	
 
 		end
