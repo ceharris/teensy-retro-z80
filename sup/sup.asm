@@ -353,7 +353,7 @@ user_mem:
 user_prog:
 		; write the hello string
 		ld hl,hello		; point to string
-		ld a,@puts		l invoke the puts function
+		ld a,@puts		; invoke the puts function
 		rst 0x28
 
 		; add trailing newline
