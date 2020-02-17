@@ -358,7 +358,7 @@ user_prog:
 
 		; add trailing newline
 		ld c,newline		; character to put
-		ld a,@putcA		; invoke the putc function
+		ld a,@putc		; invoke the putc function
 		rst 0x28
 
 		; exit the program
