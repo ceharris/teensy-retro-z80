@@ -6,7 +6,7 @@
 static const char* s_mnemonics[] = {
   "ADC", "ADD", "AND", "BIT", "CALL", "CCF", "CP", "CPD",
   "CPDR", "CPI", "CPIR", "CPL", "DAA", "DEC", "DI", "DJNZ",
-  "EI", "EX", "EXX", "HALT", "IM0", "IM1", "IM2", "IN",
+  "EI", "EX", "EXX", "HALT", "IM", "IN",
   "INC", "IND", "INDR", "INI", "INIR", "JP", "JR", "LD",
   "LDD", "LDDR", "LDI", "LDIR", "NEG", "NOP", "OR", "OUT",
   "OUTD", "OTDR", "OUTI", "OTIR", "POP", "PUSH", "RES", "RET",
@@ -432,11 +432,11 @@ static Z80_OpCode* disassemblePageED(int level, Z80_Operand ireg, uint8_t* mem) 
         case 6:
           switch ((op>>3) & 0x7) {
             case 0:
-              return opCode0(level, op_IM0);
+              return opCode1(level, op_IM, literal(0));
             case 2:
-              return opCode0(level, op_IM1);
+              return opCode1(level, op_IM, literal(1));
             case 3:
-              return opCode0(level, op_IM2);
+              return opCode1(level, op_IM, literal(2));
             default:
               return NULL;
           }
